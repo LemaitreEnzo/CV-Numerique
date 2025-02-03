@@ -730,7 +730,7 @@ main .portfolio__container__card .portfolio__container__card__text .view:hover {
   }
   .footer__content__copy__links li a {
     padding: 0;
-    font-size: 1em;
+    font-size: 0.75em;
   }
   .modal-overlay .modal {
     width: 80%;
