@@ -4,11 +4,13 @@
 * {
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 
 $primary-color: #1c1d25;
 $secondary-color: #fff;
+$terciary-color: #17181d;
 $button-color: #f06449;
 $background-color: #f3f3f3;
 $font-family: LibreBaskerville-Regular, Palatino Linotype, Times New Roman, serif;
@@ -42,11 +44,88 @@ p {
 
 body {
     font-family: $font-family;
-    background-color: $background-color;
+    background-color: $primary-color;
     margin: 0;
     padding: 0;
     color: $primary-color;
     overflow-x: hidden;
+}
+
+.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.pyramid-loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    transform-style: preserve-3d;
+    transform: rotateX(-20deg);
+}
+
+.wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    animation: spin 4s linear infinite;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.pyramid-loader .wrapper .side {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transform-origin: center top;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.pyramid-loader .wrapper .side1 {
+    transform: rotateZ(-30deg) rotateY(90deg);
+    background: conic-gradient(#2BDEAC, #F028FD, #D8CCE6, #2F2585);
+}
+
+.pyramid-loader .wrapper .side2 {
+    transform: rotateZ(30deg) rotateY(90deg);
+    background: conic-gradient(#2F2585, #D8CCE6, #F028FD, #2BDEAC);
+}
+
+.pyramid-loader .wrapper .side3 {
+    transform: rotateX(30deg);
+    background: conic-gradient(#2F2585, #D8CCE6, #F028FD, #2BDEAC);
+}
+
+.pyramid-loader .wrapper .side4 {
+    transform: rotateX(-30deg);
+    background: conic-gradient(#2BDEAC, #F028FD, #D8CCE6, #2F2585);
+}
+
+.pyramid-loader .wrapper .shadow {
+    width: 60px;
+    height: 60px;
+    background: #8B5AD5;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    transform: rotateX(90deg) translateZ(-40px);
+    filter: blur(12px);
 }
 
 .header {
@@ -60,32 +139,36 @@ body {
     &__menuIcon {
         display: none;
         cursor: pointer;
+
         .hamburger-icon {
-          span {
-            display: block;
-            width: 25px;
-            height: 3px;
-            margin: 5px auto;
-            background-color: $secondary-color;
-            transition: all 0.3s ease-in-out;
-          }
-          &.open {
             span {
-              &:nth-child(1) {
-                transform: rotate(45deg) translate(5px, 5px);
-              }
-              &:nth-child(2) {
-                opacity: 0;
-              }
-              &:nth-child(3) {
-                transform: rotate(-45deg) translate(5px, -5px);
-              }
+                display: block;
+                width: 25px;
+                height: 3px;
+                margin: 5px auto;
+                background-color: $secondary-color;
+                transition: all 0.3s ease-in-out;
             }
-          }
+
+            &.open {
+                span {
+                    &:nth-child(1) {
+                        transform: rotate(45deg) translate(5px, 5px);
+                    }
+
+                    &:nth-child(2) {
+                        opacity: 0;
+                    }
+
+                    &:nth-child(3) {
+                        transform: rotate(-45deg) translate(5px, -5px);
+                    }
+                }
+            }
         }
     }
 
-    
+
 
 
     &__nav-list {
@@ -330,6 +413,7 @@ main {
             text-align: center;
             font-size: 2rem;
             margin-bottom: 1rem;
+            color: $secondary-color;
         }
 
         &__container {
@@ -388,7 +472,54 @@ main {
             }
         }
     }
+
+    .parcours {
+        display: flex;
+        padding: 20px;
+        gap: 5%;
+        margin-top: 5%;
+        margin-bottom: 5%;
+
+        h2 {
+            color: $secondary-color;
+            margin-bottom: 20px;
+            font-size: 2em;
+            text-align: center;
+        }
+
+        &__container {
+            width: 100%;
+            max-width: 800px;
+
+            &__card {
+                margin-bottom: 20px;
+                padding: 15px;
+                border: 1px solid $primary-color;
+                border-radius: 5px;
+                background-color: $secondary-color;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                h3 {
+                    font-size: 1.5em;
+                    margin-bottom: 10px;
+                    color: $primary-color;
+                }
+
+                p {
+                    font-size: 1em;
+                    margin-bottom: 10px;
+                    color: $primary-color;
+                }
+
+                .date {
+                    font-size: 0.9em;
+                    color: $primary-color;
+                }
+            }
+        }
+    }
 }
+
 
 
 .modal-overlay {
@@ -552,7 +683,7 @@ main {
 
 
 .footer {
-    background-color: $primary-color;
+    background-color: $terciary-color;
     color: $secondary-color;
     padding: 1rem 0;
     text-align: center;
@@ -629,12 +760,15 @@ main {
         &__menuIcon {
             display: block;
         }
+
         &__nav-list {
             display: none;
-            &.active{
-                li:nth-child(3){
+
+            &.active {
+                li:nth-child(3) {
                     display: none;
                 }
+
                 display: block;
             }
         }
@@ -834,18 +968,30 @@ main {
 
     .header {
         max-width: 100%;
+        margin-bottom: 10%;
 
         &__menuIcon {
             display: block;
         }
+
         &__nav-list {
             display: none;
-            &.active{
-                li:nth-child(3){
+
+            ul {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 0;
+                left: 40%;
+            }
+
+            &.active {
+                li:nth-child(3) {
                     display: none;
                 }
+
                 font-size: 12px;
-                display: block;
+                display: flex;
             }
         }
     }
@@ -904,6 +1050,10 @@ main {
                 }
             }
         }
+
+        .parcours {
+            display: block;
+        }
     }
 
     .footer {
@@ -924,6 +1074,7 @@ main {
     .modal-overlay {
         .modal {
             width: 80%;
+
             .about {
                 padding: 10%;
                 font-family: $font-family;
@@ -946,6 +1097,7 @@ main {
                 &__list {
 
                     li {
+
                         svg,
                         ion-icon {
                             height: 50px;

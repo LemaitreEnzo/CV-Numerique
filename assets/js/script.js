@@ -2,6 +2,7 @@ function toggleMenu() {
     document.querySelector(".header__nav-list").classList.toggle("active");
     document.querySelector(".hamburger-icon").classList.toggle("open");
 }
+const body = document.getElementById("body");
 
 document.addEventListener("DOMContentLoaded", () => {
     const menuIcon = document.querySelector(".header__menuIcon");
@@ -12,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.getElementById("modal").addEventListener("click", () => {
     const modalOverlay = document.querySelector(".modal-overlay");
     const closeModal = document.querySelector(".modal-close");
-    const body = document.getElementById("body");
 
     function openModal() {
         modalOverlay.classList.add("active");
@@ -34,3 +34,17 @@ document.getElementById("modal").addEventListener("click", () => {
 });
 
 
+document.addEventListener("DOMContentLoaded", function () {
+
+    document.querySelector(".header").classList.add("hide");
+    document.querySelector("main").classList.add("hide");
+    document.querySelector("footer").classList.add("hide");
+    body.style.overflow = "hidden";
+    setTimeout(() => {
+        document.querySelector(".pyramid-loader").classList.add("hide");
+        document.querySelector(".header").classList.remove("hide");
+        document.querySelector("main").classList.remove("hide");
+        document.querySelector("footer").classList.remove("hide");
+        body.style.overflow = "auto";
+    }, 3000);
+});
