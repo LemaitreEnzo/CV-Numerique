@@ -1,4 +1,6 @@
+@use 'sass:color';
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+
 
 
 * {
@@ -214,15 +216,24 @@ body {
 main {
     .home {
         background-color: $primary-color;
-        padding: 10% 0%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        @media (max-width: 1024px) {
+            height: auto;
+        }
 
         &__moi {
+            position: relative;
             display: flex;
             margin-left: 15%;
             color: $secondary-color;
             transition: color .3s ease, .3s ease .65s;
             z-index: 7;
-            margin-bottom: 10%;
+            margin-top: 100px;
+            margin-bottom: 100px;
 
             img {
                 width: 200px;
@@ -233,9 +244,17 @@ main {
 
             &__container {
                 display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+
+                img {
+                    width: 20%;
+                    aspect-ratio: 1/1;
+                }
 
                 &__description {
-                    width: 800px;
+                    width: 75%;
                     margin-top: 5%;
 
                     h1 {
@@ -262,7 +281,7 @@ main {
                         width: 130px;
 
                         &:hover {
-                            background-color: darken($button-color, 20%);
+                            background-color: color.adjust($button-color, $lightness: -20%);
                             transition: 0.3s ease-in;
                         }
 
@@ -284,7 +303,7 @@ main {
                 position: absolute;
                 -webkit-transform-style: preserve-3d;
                 transform-style: preserve-3d;
-                top: 35%;
+                top: 50%;
                 -webkit-transform: translateY(-50%);
                 transform: translateY(-50%);
                 right: 2%;
@@ -303,7 +322,7 @@ main {
                         font-size: 4rem;
 
                         &:hover {
-                            color: darken($secondary-color, 20%);
+                            color: color.adjust($secondary-color, $lightness: -20%);
                         }
                     }
                 }
@@ -319,7 +338,7 @@ main {
         padding: 2rem;
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        height: 50vh;
+        padding-bottom: 100px;
 
         ion-icon {
             font-size: 2.5em;
@@ -334,9 +353,9 @@ main {
 
         &__container {
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-around;
             animation-duration: 1s;
-            height: 50vh;
 
             &__card {
                 position: relative;
@@ -354,7 +373,6 @@ main {
                     .card-back {
                         width: 100%;
                         height: 100%;
-                        padding: 1rem;
                         background-color: $primary-color;
                         color: $secondary-color;
                         border-radius: 10px;
@@ -463,7 +481,7 @@ main {
                             border-radius: 5px;
 
                             &:hover {
-                                background-color: darken($button-color, 20%);
+                                background-color: color.adjust($button-color, $lightness: -20%);
                                 transition: 0.3s ease-in;
                             }
                         }
@@ -661,7 +679,7 @@ main {
                 margin: 0 auto;
 
                 &:hover {
-                    background-color: darken($button-color, 20%);
+                    background-color: color.adjust($button-color, $lightness: -20%);
                 }
             }
         }
@@ -784,10 +802,6 @@ main {
                 margin: 0;
                 margin-left: 15%;
 
-                img {
-                    display: none;
-                }
-
                 &__social-vertical-stripe {
                     display: none;
                 }
@@ -801,10 +815,6 @@ main {
                     }
                 }
             }
-        }
-
-        .compétence {
-            display: none;
         }
 
         .portfolio {
@@ -1004,10 +1014,11 @@ main {
 
             &__moi {
                 margin: 0;
-                margin-left: 15%;
+                margin-left: 8%;
+                margin-right: 8%;
 
                 img {
-                    display: none;
+                    margin: 0 auto;
                 }
 
                 &__social-vertical-stripe {
@@ -1023,10 +1034,6 @@ main {
                     }
                 }
             }
-        }
-
-        .compétence {
-            display: none;
         }
 
         .portfolio {

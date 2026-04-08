@@ -22,7 +22,7 @@ document.getElementById("modal").addEventListener("click", () => {
 
     function closeModalHandler() {
         modalOverlay.classList.remove("active");
-        body.style.overflow = "auto";
+        body.style.overflow = "hidden";
     }
 
     closeModal.addEventListener("click", closeModalHandler);
@@ -46,5 +46,6 @@ document.addEventListener("DOMContentLoaded", function () {
         document.querySelector("main").classList.remove("hide");
         document.querySelector("footer").classList.remove("hide");
         body.style.overflow = "auto";
+        body.style.overflowX = "hidden";
     }, 3000);
 });
